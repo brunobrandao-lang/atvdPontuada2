@@ -22,4 +22,16 @@ public class GlobalException {
                 .status(HttpStatus.BAD_REQUEST)
                 .body(Map.of("mensagem", erro.getMessage()));
     }
+
+    @ExceptionHandler(org.springframework.web.bind.MethodArgumentNotValidException.class)
+    public ResponseEntity<Map<String, Object>> validacaoException(org.springframework.web.bind.MethodArgumentNotValidException erro) {
+        java.util.List<String> erros = erro.getBindingResult()
+                .getFieldErrors()
+                .stream()
+                .map(org.springframework.validation.FieldError::getDefaultMessage)
+                .toList();
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(Map.of("erros", erros));
+    }
 }

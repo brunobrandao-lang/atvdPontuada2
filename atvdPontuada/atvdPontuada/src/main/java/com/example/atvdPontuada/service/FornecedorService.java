@@ -6,7 +6,6 @@ import com.example.atvdPontuada.model.FornecedorModel;
 import com.example.atvdPontuada.repository.FornecedorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -27,7 +26,10 @@ public class FornecedorService {
 
     public FornecedorModel salvar(FornecedorRequestDTO dto){
         if (repository.findByCnpj(dto.getCnpj()).isPresent()){
-            throw new RuntimeException("Fornecedor já cadastrado");
+            throw new RuntimeException("Fornecedor já cadastrado.");
+        }
+        if (repository.findByEmail(dto.getEmail()).isPresent()) {
+            throw new RuntimeException("E-mail já cadastrado.");
         }
         FornecedorModel novoFornecedor = new FornecedorModel();
         novoFornecedor.setNome(dto.getNome());
@@ -40,7 +42,19 @@ public class FornecedorService {
 
     public void atualizar(Long id, FornecedorRequestDTO dto){
         FornecedorModel fornecedor = repository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Fornecedor não encontrado"));
+                .orElseThrow(()-> new RuntimeException("Fornecedor não encontrado."));
+
+        repository.findByCnpj(dto.getCnpj()).ifPresent(f -> {
+            if (!f.getId().equals(id)) {
+                throw new RuntimeException("CNPJ já cadastrado por outro fornecedor.");
+            }
+        });
+
+        repository.findByEmail(dto.getEmail()).ifPresent(f -> {
+            if (!f.getId().equals(id)) {
+                throw new RuntimeException("E-mail já cadastrado por outro fornecedor.");
+            }
+        });
 
         fornecedor.setNome(dto.getNome());
         fornecedor.setCnpj(dto.getCnpj());
@@ -52,7 +66,7 @@ public class FornecedorService {
 
     public void excluir(Long id) {
         if (!repository.existsById(id)) {
-            throw new RuntimeException("Fornecedor não encontrado");
+            throw new RuntimeException("Fornecedor não encontrado.");
         }
         repository.deleteById(id);
     }

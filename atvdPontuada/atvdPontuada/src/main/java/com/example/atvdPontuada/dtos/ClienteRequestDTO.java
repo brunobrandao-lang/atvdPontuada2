@@ -12,7 +12,7 @@ public class ClienteRequestDTO {
     private String cpf;
 
     @NotBlank(message = "Informe sua data de nascimento: ")
-    private String DataNascimento;
+    private String dataNascimento;
 
     @NotBlank(message = "Informe seu email: ")
     @Email(message = "Deve ser um email válido")
@@ -28,48 +28,48 @@ public class ClienteRequestDTO {
     public ClienteRequestDTO(String nome, String cpf, String dataNascimento, String email, String senha) {
         this.nome = nome;
         this.cpf = cpf;
-        DataNascimento = dataNascimento;
+        this.dataNascimento = dataNascimento;
         this.email = email;
         this.senha = senha;
     }
 
-    public @NotBlank(message = "Informe seu nome: ") String getNome() {
+    public String getNome() {
         return nome;
     }
 
-    public void setNome(@NotBlank(message = "Informe seu nome: ") String nome) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public @NotBlank(message = "Informe seu cpf: ") String getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(@NotBlank(message = "Informe seu cpf: ") String cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
-    public @NotBlank(message = "Informe sua data de nascimento: ") String getDataNascimento() {
-        return DataNascimento;
+    public String getDataNascimento() {
+        return dataNascimento;
     }
 
-    public void setDataNascimento(@NotBlank(message = "Informe sua data de nascimento: ") String dataNascimento) {
-        DataNascimento = dataNascimento;
+    public void setDataNascimento(String dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 
-    public @NotBlank(message = "Informe seu email: ") @Email(message = "Deve ser um email válido") String getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(@NotBlank(message = "Informe seu email: ") @Email(message = "Deve ser um email válido") String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public @NotBlank(message = "Crie sua senha: ") @Size(min = 6, message = "A senha deve ter no mínimo 6 caracteres") String getSenha() {
+    public String getSenha() {
         return senha;
     }
 
-    public void setSenha(@NotBlank(message = "Crie sua senha: ") @Size(min = 6, message = "A senha deve ter no mínimo 6 caracteres") String senha) {
+    public void setSenha(String senha) {
         this.senha = senha;
     }
 }

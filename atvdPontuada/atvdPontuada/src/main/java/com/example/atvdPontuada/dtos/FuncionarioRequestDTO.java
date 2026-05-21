@@ -2,6 +2,7 @@ package com.example.atvdPontuada.dtos;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class FuncionarioRequestDTO {
     @NotBlank(message = "Informe seu nome: ")
@@ -20,7 +21,7 @@ public class FuncionarioRequestDTO {
     @NotBlank(message = "Informe seu setor: ")
     private String setor;
 
-    @NotBlank(message = "Informe seu salário: ")
+    @NotNull(message = "Informe seu salário: ")
     private Double salario;
 
     public FuncionarioRequestDTO() {
@@ -35,51 +36,51 @@ public class FuncionarioRequestDTO {
         this.salario = salario;
     }
 
-    public @NotBlank(message = "Informe seu nome: ") String getNome() {
+    public String getNome() {
         return nome;
     }
 
-    public void setNome(@NotBlank(message = "Informe seu nome: ") String nome) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public @NotBlank(message = "Informe seu cpf: ") String getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(@NotBlank(message = "Informe seu cpf: ") String cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
-    public @NotBlank(message = "Informe seu email: ") @Email(message = "Deve ser um email válido") String getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(@NotBlank(message = "Informe seu email: ") @Email(message = "Deve ser um email válido") String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public @NotBlank(message = "Informe seu telefone: ") String getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(@NotBlank(message = "Informe seu telefone: ") String telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
-    public @NotBlank(message = "Informe seu setor: ") String getSetor() {
+    public String getSetor() {
         return setor;
     }
 
-    public void setSetor(@NotBlank(message = "Informe seu setor: ") String setor) {
+    public void setSetor(String setor) {
         this.setor = setor;
     }
 
-    public @NotBlank(message = "Informe seu salário: ") Double getSalario() {
+    public Double getSalario() {
         return salario;
     }
 
-    public void setSalario(@NotBlank(message = "Informe seu salário: ") Double salario) {
+    public void setSalario(Double salario) {
         this.salario = salario;
     }
 }
